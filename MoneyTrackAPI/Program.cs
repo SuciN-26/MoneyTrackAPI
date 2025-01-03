@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using MoneyTrackAPI.Data;
+using MoneyTrackAPI.Repositories;
+using MoneyTrackAPI.Repositories.Implementations;
+using MoneyTrackAPI.Services;
+using MoneyTrackAPI.Services.Implementations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,10 +14,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Store
+// Store Repository
 builder.Services.AddDbContext<MoneyTrackDbContext>(options => {
     options.UseMySQL(builder.Configuration.GetConnectionString("db"));
 });
+builder.Services.AddScoped<ITypeExpenseRepository, TypeExpenseRepository>();
+
+// Service
+builder.Services.AddScoped<ITypeExpenseService, TypeExpenseService>();
 
 var app = builder.Build();
 

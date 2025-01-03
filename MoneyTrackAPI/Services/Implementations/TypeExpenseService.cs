@@ -2,14 +2,14 @@
 
 namespace MoneyTrackAPI.Services.Implementations
 {
-    public class UserService : IUserService
+    public class TypeExpenseService : ITypeExpenseService
     {
-        public Task<User> DetailUser(string id)
+        public Task<IEnumerable<TypeExpense>> GetAllTypeExpenses()
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<User>> ListUsers()
+        public Task<TypeExpense> GetTypeExpense(string? id, string? cd)
         {
             throw new NotImplementedException();
         }
